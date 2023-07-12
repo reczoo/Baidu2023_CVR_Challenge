@@ -7,7 +7,9 @@
 
 ### 数据下载
 初赛：
+
 [train_data.7z](https://aistudio.baidu.com/aistudio/datasetdetail/205411/0)
+
 [test_data.7z](https://aistudio.baidu.com/aistudio/datasetdetail/204194)
 
 ### 数据样例

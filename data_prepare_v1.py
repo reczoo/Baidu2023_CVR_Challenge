@@ -8,6 +8,7 @@ output_dir = "./2023-cvr-contest-data/data_v1/"
 
 train_files = glob.glob(os.path.join(train_dir, "*.txt"))
 test_files = glob.glob(os.path.join(test_dir, "*.txt"))
+os.makedirs(output_dir, exist_ok=True)
 
 def convert_data(data_files):
     rows = []
