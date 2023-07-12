@@ -1,0 +1,7 @@
+fuxictr
+PyYAML
+pandas
+scikit-learn
+numpy
+h5py
+tqdm
