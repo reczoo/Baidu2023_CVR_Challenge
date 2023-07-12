@@ -3,7 +3,7 @@ base_expid: FINAL_default
 dataset_id: data_v1
 
 dataset_config:
-    criteo_x1:
+    data_v1:
         data_root: ./2023-cvr-contest-data/data_v1/
         data_format: csv
         train_data: ./2023-cvr-contest-data/data_v1/train.csv

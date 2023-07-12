@@ -7,6 +7,7 @@ test_dir = "./2023-cvr-contest-data/test_data/"
 output_dir = "./2023-cvr-contest-data/data_v1/"
 
 train_files = glob.glob(os.path.join(train_dir, "*.txt"))
+train_files.sort()
 test_files = glob.glob(os.path.join(test_dir, "*.txt"))
 os.makedirs(output_dir, exist_ok=True)
 
@@ -32,12 +33,15 @@ def convert_data(data_files):
     return rows
 
 train_rows = convert_data(train_files)
-print(f"Number of samples: {len(train_rows)}")
+print(f"Number of samples in train_data: {len(train_rows)}")
 data = pd.DataFrame(train_rows, columns=["log_id", "label", "label_t1", "label_t2", "label_t3",
                     "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11",
                     "f12", "f13", "f14", "f15", "f16", "f17", "f18", "f19", "f20", "f21",
                     "f22", "f23", "f24", "f25", "f26"])
-train_samples = len(train_rows) - 234912
+valid_samples = 234912
+train_samples = len(train_rows) - valid_samples
+print(f"Number of training samples: {train_samples}")
+print(f"Number of validation samples: {valid_samples}")
 train_data = data.iloc[:train_samples, :]
 valid_data = data.iloc[train_samples:, :]
 train_data.to_csv(os.path.join(output_dir, "train.csv"), index=False)
