@@ -2,9 +2,9 @@ import pandas as pd
 import glob
 import os
 
-train_dir = "./2023-cvr-contest-data/train_data/"
-test_dir = "./2023-cvr-contest-data/test_data/"
-output_dir = "./2023-cvr-contest-data/data_v1/"
+train_dir = "./data/train_data/"
+test_dir = "./data/test_data/"
+output_dir = "./data/data_v1/"
 
 train_files = glob.glob(os.path.join(train_dir, "*.txt"))
 train_files.sort()
