@@ -1,0 +1,40 @@
+base_config: ./config/base_config/
+base_expid: FINAL_default
+dataset_id: data_v1
+
+dataset_config:
+    data_v1:
+        data_root: ./data/
+        data_format: csv
+        train_data: ./data/data_v1/data.csv
+        valid_data: ./data/data_v1/valid.csv
+        test_data: ./data/data_v1/test.csv
+        min_categr_count: 10
+        feature_cols:
+            - {name: ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f11",
+                      "f12", "f13", "f14", "f15", "f16", "f19", "f21", "f23", "f24"],
+               active: True, dtype: str, type: categorical}
+            - {name: ["f10", "f17", "f18", "f20", "f22", "f25", "f26"], active: True, dtype: str,
+               type: sequence, splitter: "^", feature_encoder: "layers.MaskedAveragePooling()"}
+        label_col: {name: label, dtype: float}
+
+tuner_space:
+    model_root: './checkpoints/FINAL_data_v1/'
+    embedding_dim: [64, 32]
+    embedding_regularizer: [1.e-5, 1.e-6]
+    block_type: "2B"
+    batch_norm: True
+    use_field_gate: False
+    block1_hidden_units: [[1024, 512, 256]]
+    block1_hidden_activations: ReLU
+    block1_dropout: 0.1
+    block2_hidden_units: [[1024, 512, 256]]
+    block2_hidden_activations: ReLU
+    block2_dropout: 0.1
+    learning_rate: 5.e-4
+    batch_size: 4096
+    epochs: 2
+    seed: 20232024
+    monitor: 'AUC'
+    monitor_mode: 'max'
+    metrics: [['AUC', 'logloss']]
