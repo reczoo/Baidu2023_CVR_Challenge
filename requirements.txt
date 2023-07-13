@@ -1,4 +1,4 @@
-fuxictr
+fuxictr==2.0.3
 PyYAML
 pandas
 scikit-learn

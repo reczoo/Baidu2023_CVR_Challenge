@@ -15,6 +15,7 @@ import gc
 import argparse
 import os
 from pathlib import Path
+import pandas as pd
 
 
 if __name__ == '__main__':
@@ -35,17 +36,20 @@ if __name__ == '__main__':
 
     data_dir = os.path.join(params['data_root'], params['dataset_id'])
     feature_map_json = os.path.join(data_dir, "feature_map.json")
+    params["train_data"] = os.path.join(data_dir, 'train.h5')
+    params["valid_data"] = os.path.join(data_dir, 'valid.h5')
+    params["test_data"] = os.path.join(data_dir, 'test.h5')
     feature_map = FeatureMap(params['dataset_id'], data_dir)
     feature_map.load(feature_map_json, params)
     logging.info("Feature specs: " + print_to_json(feature_map.features))
 
     model_class = getattr(model, params['model'])
     model = model_class(feature_map, **params)
-    model.count_parameters() # print number of parameters used in model
+    model.load_weights(model.checkpoint)
 
     test_gen = H5DataLoader(feature_map, stage='test', **params).make_iterator()
     y_pred = model.predict(test_gen)
-    test_df = pd.read_csv("./2023-cvr-contest-data/data_v1/test.csv")["log_id"]
+    test_df = pd.read_csv("./2023-cvr-contest-data/data_v1/test.csv")
     test_df["predict"] = y_pred
     test_df["predict"] = test_df["predict"].map(lambda x: "{:.16f}".format(x))
-    test_df.to_csv("test-1.txt", header=False, index=False)
+    test_df[["log_id", "predict"]].to_csv("test-1.txt", header=False, index=False)

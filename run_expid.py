@@ -72,12 +72,7 @@ if __name__ == '__main__':
     valid_result = model.evaluate(valid_gen)
     del train_gen, valid_gen
     gc.collect()
-    
-    logging.info('******** Test evaluation ********')
-    test_gen = H5DataLoader(feature_map, stage='test', **params).make_iterator()
     test_result = {}
-    if test_gen:
-      test_result = model.evaluate(test_gen)
     
     result_filename = Path(args['config']).name.replace(".yaml", "") + '.csv'
     with open(result_filename, 'a+') as fw:
@@ -85,4 +80,3 @@ if __name__ == '__main__':
             .format(datetime.now().strftime('%Y%m%d-%H%M%S'), 
                     ' '.join(sys.argv), experiment_id, params['dataset_id'],
                     "N.A.", print_to_list(valid_result), print_to_list(test_result)))
-

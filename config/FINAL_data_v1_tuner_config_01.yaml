@@ -1,4 +1,4 @@
-base_config: ./config/
+base_config: ./config/base_config/
 base_expid: FINAL_default
 dataset_id: data_v1
 
@@ -14,7 +14,7 @@ dataset_config:
             - {name: ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f11",
                       "f12", "f13", "f14", "f15", "f16", "f19", "f21", "f23", "f24"],
                active: True, dtype: str, type: categorical}
-            - {name: ["f10", "f17", "f18", "f20", "f22", "f25", "f26"], active: True, dtype: float,
+            - {name: ["f10", "f17", "f18", "f20", "f22", "f25", "f26"], active: True, dtype: str,
                type: sequence, splitter: "^", feature_encoder: "layers.MaskedAveragePooling()"}
         label_col: {name: label, dtype: float}
 
