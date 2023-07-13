@@ -6,7 +6,7 @@ dataset_config:
     data_v1:
         data_root: ./data/
         data_format: csv
-        train_data: ./data/data_v1/train.csv
+        train_data: ./data/data_v1/data.csv
         valid_data: ./data/data_v1/valid.csv
         test_data: ./data/data_v1/test.csv
         min_categr_count: 10
@@ -20,8 +20,8 @@ dataset_config:
 
 tuner_space:
     model_root: './checkpoints/FINAL_data_v1/'
-    embedding_dim: 64
-    embedding_regularizer: [1.e-5, 1.e-4, 1.e-6, 1.e-7]
+    embedding_dim: [64, 32]
+    embedding_regularizer: [1.e-5, 1.e-6]
     block_type: "2B"
     batch_norm: True
     use_field_gate: False
@@ -31,8 +31,9 @@ tuner_space:
     block2_hidden_units: [[1024, 512, 256]]
     block2_hidden_activations: ReLU
     block2_dropout: 0.1
-    learning_rate: 1.e-3
-    batch_size: 8192
+    learning_rate: 5.e-4
+    batch_size: 4096
+    epochs: 1
     seed: 20232024
     monitor: 'AUC'
     monitor_mode: 'max'
