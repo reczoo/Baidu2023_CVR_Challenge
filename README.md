@@ -10,36 +10,36 @@
 ### 数据准备
 1. 数据解压
 
-```bash
-cd ~/Baidu2023_CVR_Challenge/data/data205411
-7zr x train_data.7z
-mv 2023-cvr-contest-data/train_data ~/Baidu2023_CVR_Challenge/data/
-cd ~/Baidu2023_CVR_Challenge/data/data204194
-7zr x test_data.7z
-mv test_data ~/Baidu2023_CVR_Challenge/data/
+    ```bash
+    cd ~/Baidu2023_CVR_Challenge/data/data205411
+    7zr x train_data.7z
+    mv 2023-cvr-contest-data/train_data ~/Baidu2023_CVR_Challenge/data/
+    cd ~/Baidu2023_CVR_Challenge/data/data204194
+    7zr x test_data.7z
+    mv test_data ~/Baidu2023_CVR_Challenge/data/
 
-```
+    ```
 
 2. 数据转换，采用csv输入格式，并合并多值序列特征
 
-```bash
-cd ~/Baidu2023_CVR_Challenge/
-python data_prepare_v1.py
-```
+    ```bash
+    cd ~/Baidu2023_CVR_Challenge/
+    python data_prepare_v1.py
+    ```
 
 ### Version 1
 
 1. 训练模型，针对train集和valid集的数据划分进行超参搜索
 
-```
-python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
-```
+    ```
+    python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
+    ```
 
 2. 对test数据进行预测，并生成提交文件
 
-```
-python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
-```
+    ```
+    python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
+    ```
 
 对生成的结果文件test-1.txt进行压缩为submission_v1.zip后提交。
 
@@ -54,15 +54,15 @@ python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --g
 
 1. 训练模型，采用所有数据(data.csv)作为训练集进行训练，仍采用valid.csv进行验证，为避免过拟合，设置训练epochs=1。
 
-```
-python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_02.yaml --gpu 0
-```
+    ```
+    python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_02.yaml --gpu 0
+    ```
 
 2. 对test数据进行预测，并生成提交文件
 
-```
-python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
-```
+    ```
+    python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
+    ```
 
 
 3. 提交结果，测试AUC为0.7417
@@ -75,15 +75,15 @@ python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --g
 
 1. 在Version 2的基础上，设置训练epochs=2。
 
-```
-python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_03.yaml --gpu 0
-```
+    ```
+    python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_03.yaml --gpu 0
+    ```
 
 2. 实验就训练完一组，进行预测
 
-```
-python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
-```
+    ```
+    python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
+    ```
 
 
 3. 提交结果，测试AUC为0.74184，排名40
