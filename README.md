@@ -23,14 +23,14 @@ python data_prepare_v1.py
 python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
 ```
 
-<div align="center">
-    <img width="80%" src="./img/submit_0.74063.png">
+<div align="left">
+    <img width="100%" src="./img/submit_0.74063.png">
 </div>
 
 ### Version 2
 ```
 python run_param_tuner.py --config config/FINAL_data_v1_tuner_config_01.yaml --gpu 0
 ```
-<div align="center">
-    <img width="80%" src="./img/submit_0.7417.png">
+<div align="left">
+    <img width="100%" src="./img/submit_0.7417.png">
 </div>
